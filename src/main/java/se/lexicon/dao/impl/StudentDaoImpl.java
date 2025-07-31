@@ -72,10 +72,11 @@ public class StudentDaoImpl implements StudentDao {
                 result.add(student);
             }
         }
-        // If no students found, throw exception:
-        if (result.isEmpty()) {
+
+        // Decided that it is okay to return an empty list.
+        /* if (result.isEmpty()) {
             throw new IllegalArgumentException("No one found with the following name: " + name);
-        }
+        }*/
 
         return result;
     }
