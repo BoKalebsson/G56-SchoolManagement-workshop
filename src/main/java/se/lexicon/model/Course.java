@@ -1,6 +1,7 @@
 package se.lexicon.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Course {
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
-    private List<Student> students;
+    private List<Student> students = new ArrayList<>();;
 
     // Constructor without List of Students:
     public Course(String courseName, LocalDate startDate, int weekDuration) {
@@ -47,7 +48,7 @@ public class Course {
     }
 
     public List<Student> getStudents() {
-        return students == null ? new ArrayList<>() : new ArrayList<>(students);
+        return new ArrayList<>(students);
     }
 
     // Setters:
@@ -59,8 +60,8 @@ public class Course {
     }
 
     public void setStartDate(LocalDate startDate) {
-        if(startDate.isBefore(LocalDate.now())){
-            throw new IllegalArgumentException("Startdate cannot be in the past.");
+        if (startDate == null || startDate.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Start date cannot be null or in the past.");
         }
         this.startDate = startDate;
     }
@@ -81,13 +82,28 @@ public class Course {
     }
 
     // Operations:
+    public void register(Student student) {
+        // Check if student is null:
+        if (student == null) throw new IllegalArgumentException("Student cannot be null.");
+
+        // Check if student already exists in students:
+        if (!this.students.contains(student)) {
+            this.students.add(student);
+        }
+    }
+
+    public void unregister(Student student) {
+        this.students.remove(student);
+    }
+
     @Override
     public String toString() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         StringBuilder sb = new StringBuilder();
         sb.append("-- Course Information --").append("\n");
         sb.append("Id: ").append(getId()).append("\n");
         sb.append("Course name: ").append(getCourseName()).append("\n");
-        sb.append("Start Date: ").append(getStartDate()).append("\n");
+        sb.append("Start Date: ").append(getStartDate().format(format)).append("\n");
         sb.append("Duration: ").append(getWeekDuration()).append("\n");
         sb.append("Number of students: ").append(students != null ? students.size() : 0).append("\n");
         sb.append("---------------------------").append("\n");
@@ -96,6 +112,7 @@ public class Course {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
         return id == course.id;
