@@ -95,4 +95,8 @@ public class CourseDaoImpl implements CourseDao {
         // Returns boolean-value:
         return courses.remove(course);
     }
+
+    void clear() {
+        courses.clear();
+    }
 }
