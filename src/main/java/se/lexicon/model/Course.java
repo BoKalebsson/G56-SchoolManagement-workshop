@@ -93,7 +93,10 @@ public class Course {
     }
 
     public void unregister(Student student) {
-        this.students.remove(student);
+        if (student == null) {
+            throw new IllegalArgumentException("Student cannot be null.");
+        }
+        students.remove(student);
     }
 
     @Override
