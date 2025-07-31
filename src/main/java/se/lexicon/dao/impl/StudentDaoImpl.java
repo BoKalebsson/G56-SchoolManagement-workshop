@@ -113,4 +113,8 @@ public class StudentDaoImpl implements StudentDao {
         // Returns boolean-value:
         return students.remove(student);
     }
+
+    void clear() {
+        students.clear();
+    }
 }
