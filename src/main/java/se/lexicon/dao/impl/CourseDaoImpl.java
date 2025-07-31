@@ -51,7 +51,28 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public List<Course> findByName(String name) {
-        return List.of();
+
+        // Check for null and empty:
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Course name cannot be null or empty.");
+        }
+
+        // Create a list to hold matching courses, and trim the name to search for:
+        List<Course> result = new ArrayList<>();
+        String searchName = name.trim();
+
+        // Search for matching courses (case-insensitive):
+        for (Course course : courses) {
+            if (course.getCourseName().equalsIgnoreCase(searchName)) {
+                result.add(course);
+            }
+        }
+        // If no courses found, throw exception:
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("No course found with the following course name: " + name);
+        }
+
+        return result;
     }
 
     @Override
@@ -61,7 +82,7 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public List<Course> findAll() {
-        return List.of();
+        return new ArrayList<>(courses);
     }
 
     @Override
