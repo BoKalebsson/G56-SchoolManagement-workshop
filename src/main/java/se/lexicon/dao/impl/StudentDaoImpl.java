@@ -99,7 +99,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public List<Student> findAll() {
-        return List.of();
+        return new ArrayList<>(students);
     }
 
     @Override
