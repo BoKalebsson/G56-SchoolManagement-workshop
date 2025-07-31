@@ -105,7 +105,7 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public Boolean delete(Course course) {
+    public boolean delete(Course course) {
         // Check for null:
         if (course == null){
             throw new IllegalArgumentException("Course cannot be null.");

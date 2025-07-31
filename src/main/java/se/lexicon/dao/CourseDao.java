@@ -52,6 +52,6 @@ public interface CourseDao {
      * @param course the Course to delete
      * @return true if deletion was successful, false otherwise
      */
-    Boolean delete(Course course);
+    boolean delete(Course course);
 
 }
