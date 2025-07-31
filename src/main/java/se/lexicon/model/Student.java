@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Student {
 
-    private static int idCounter = 0;
+    private static int personIdCounter = 0;
 
     // Attributes:
     private int id;
@@ -14,7 +14,7 @@ public class Student {
 
     // Constructor:
     public Student(String name, String email, String address) {
-        this.id = ++idCounter;
+        this.id = ++personIdCounter;
         this.name = name;
         this.email = email;
         this.address = address;
