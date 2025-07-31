@@ -52,6 +52,6 @@ public interface StudentDao {
      * @param student the Student to delete
      * @return true if deletion was successful, false otherwise
      */
-    Boolean delete(Student student);
+    boolean delete(Student student);
 
 }

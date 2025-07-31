@@ -103,7 +103,14 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public Boolean delete(Student student) {
-        return null;
+    public boolean delete(Student student) {
+
+        // Check for null and empty:
+        if (student == null){
+            throw new IllegalArgumentException("Student cannot be null.");
+        }
+
+        // Returns boolean-value:
+        return students.remove(student);
     }
 }
