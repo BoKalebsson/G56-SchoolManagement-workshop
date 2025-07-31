@@ -2,6 +2,7 @@ package se.lexicon.dao.impl;
 
 import se.lexicon.dao.CourseDao;
 import se.lexicon.model.Course;
+import se.lexicon.model.Student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,7 +34,19 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public Course findById(int id) {
-        return null;
+
+        // Check if id is negative or zero:
+        if(id <= 0){
+            throw new IllegalArgumentException("Id is not allowed to be zero or negative.");
+        }
+
+        // Check if the id is in the list:
+        for (Course course : courses) {
+            if (course.getId() == id) {
+                return course;
+            }
+        }
+        throw new IllegalArgumentException("No course found with id: " + id);
     }
 
     @Override
