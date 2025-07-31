@@ -61,7 +61,19 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student findById(int id) {
-        return null;
+
+        // Check if id is negative or zero:
+        if(id <= 0){
+            throw new IllegalArgumentException("Id is not allowed to be zero or negative.");
+        }
+
+        // Check if the id is in the list:
+        for (Student student : students) {
+            if (student.getId() == id) {
+                return student;
+            }
+        }
+        throw new IllegalArgumentException("No person found with id: " + id);
     }
 
     @Override
