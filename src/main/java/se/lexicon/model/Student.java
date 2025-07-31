@@ -7,7 +7,7 @@ public class Student {
     private static int personIdCounter = 0;
 
     // Attributes:
-    private int id;
+    private final int id;
     private String name;
     private String email;
     private String address;
@@ -77,16 +77,16 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id == student.id
-                && Objects.equals(name, student.name)
-                && Objects.equals(email, student.email)
-                && Objects.equals(address, student.address);
+        return id == student.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, address);
+        return Integer.hashCode(id);
     }
+
 }
+
