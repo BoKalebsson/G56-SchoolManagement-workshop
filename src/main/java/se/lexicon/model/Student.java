@@ -15,9 +15,9 @@ public class Student {
     // Constructor:
     public Student(String name, String email, String address) {
         this.id = ++personIdCounter;
-        this.name = name;
-        this.email = email;
-        this.address = address;
+        this.setName(name);
+        this.setEmail(email);
+        this.setAddress(address);
     }
 
     // Getters:
