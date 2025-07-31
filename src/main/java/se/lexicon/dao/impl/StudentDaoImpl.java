@@ -40,7 +40,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Student findByEmail(String email) {
 
-        // Basic check for the search. More robust checks are handled by the Person-class.
+        // Check for null and empty:
         if (email == null || email.trim().isEmpty()){
             throw new IllegalArgumentException("Email cannot be null or empty.");
         }
@@ -56,7 +56,28 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public List<Student> findByName(String name) {
-        return List.of();
+
+        // Check for null and empty:
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
+
+        // Create a list to hold matching students, and trim the name to search for:
+        List<Student> result = new ArrayList<>();
+        String searchName = name.trim();
+
+        // Search for matching students (case-insensitive):
+        for (Student student : students) {
+            if (student.getName().equalsIgnoreCase(searchName)) {
+                result.add(student);
+            }
+        }
+        // If no students found, throw exception:
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("No one found with the following name: " + name);
+        }
+
+        return result;
     }
 
     @Override
