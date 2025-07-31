@@ -10,13 +10,18 @@ public class Course {
     private static int courseIdCounter = 0;
 
     // Attributes:
-    private int id;
+    private final int id;
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
     private List<Student> students;
 
-    // Constructor:
+    // Constructor without List of Students:
+    public Course(String courseName, LocalDate startDate, int weekDuration) {
+        this(courseName, startDate, weekDuration, new ArrayList<>());
+    }
+
+    // Constructor with List of Students:
     public Course(String courseName, LocalDate startDate, int weekDuration, List<Student> students) {
         this.id = ++courseIdCounter;
         this.setCourseName(courseName);
@@ -94,15 +99,11 @@ public class Course {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return id == course.id
-                && weekDuration == course.weekDuration
-                && Objects.equals(courseName, course.courseName)
-                && Objects.equals(startDate, course.startDate)
-                && Objects.equals(students, course.students);
+        return id == course.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, courseName, startDate, weekDuration, students);
+        return Integer.hashCode(id);
     }
 }
