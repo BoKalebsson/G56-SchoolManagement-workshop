@@ -47,7 +47,7 @@ public class Course {
     }
 
     public List<Student> getStudents() {
-        return new ArrayList<>(students);
+        return students == null ? new ArrayList<>() : new ArrayList<>(students);
     }
 
     // Setters:
