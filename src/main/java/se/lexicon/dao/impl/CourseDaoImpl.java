@@ -77,7 +77,26 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public List<Course> findByDate(LocalDate date) {
-        return List.of();
+
+        // Check if date is null:
+        if(date == null){
+            throw new IllegalArgumentException("Date is not allowed to be null.");
+        }
+
+        // Create a list to hold matching courses:
+        List<Course> result = new ArrayList<>();
+
+        for (Course course : courses) {
+            if (course.getStartDate().equals(date)) {
+                result.add(course);
+            }
+        }
+
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("No courses found with the following date: " + date);
+        }
+
+        return result;
     }
 
     @Override
