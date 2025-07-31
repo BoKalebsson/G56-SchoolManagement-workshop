@@ -39,7 +39,19 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student findByEmail(String email) {
-        return null;
+
+        // Basic check for the search. More robust checks are handled by the Person-class.
+        if (email == null || email.trim().isEmpty()){
+            throw new IllegalArgumentException("Email cannot be null or empty.");
+        }
+
+        // Search through the list for matching email (case-insensitive)
+        for (Student student : students) {
+            if (student.getEmail().equalsIgnoreCase(email.trim())) {
+                return student;
+            }
+        }
+        throw new IllegalArgumentException("No one found with the following email: " + email);
     }
 
     @Override
