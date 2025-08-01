@@ -51,7 +51,7 @@ public class StudentDaoImpl implements StudentDao {
                 return student;
             }
         }
-        throw new IllegalArgumentException("No one found with the following email: " + email);
+        return null;
     }
 
     @Override
@@ -72,12 +72,6 @@ public class StudentDaoImpl implements StudentDao {
                 result.add(student);
             }
         }
-
-        // Decided that it is okay to return an empty list.
-        /* if (result.isEmpty()) {
-            throw new IllegalArgumentException("No one found with the following name: " + name);
-        }*/
-
         return result;
     }
 
@@ -95,7 +89,7 @@ public class StudentDaoImpl implements StudentDao {
                 return student;
             }
         }
-        throw new IllegalArgumentException("No person found with id: " + id);
+        return null;
     }
 
     @Override
