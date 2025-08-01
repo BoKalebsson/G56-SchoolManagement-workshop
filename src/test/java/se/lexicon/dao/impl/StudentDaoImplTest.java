@@ -75,9 +75,11 @@ public class StudentDaoImplTest {
 
     @Test
     void find_byEmail_notFound() {
-        // Act & Assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dao.findByEmail("nonexistent@test.com"));
-        assertTrue(ex.getMessage().contains("No one found"));
+        // Act
+        Student result = dao.findByEmail("notfound@example.com");
+
+        // Assert: result should be null when no student found
+        assertNull(result);
     }
 
     @Test
@@ -112,9 +114,12 @@ public class StudentDaoImplTest {
 
     @Test
     void find_byName_notFound() {
-        // Act & Assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dao.findByName("Nonexistent"));
-        assertTrue(ex.getMessage().contains("No one found"));
+        // Act
+        List<Student> result = dao.findByName("NonExistingName");
+
+        // Assert: result should not be null (preferably empty list)
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
     }
 
     @Test
@@ -143,9 +148,11 @@ public class StudentDaoImplTest {
 
     @Test
     void find_byId_notFound() {
-        // Act & Assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dao.findById(999));
-        assertTrue(ex.getMessage().contains("No person found"));
+        // Act
+        Student result = dao.findById(9999);
+
+        // Assert
+        assertNull(result);
     }
 
     @Test
