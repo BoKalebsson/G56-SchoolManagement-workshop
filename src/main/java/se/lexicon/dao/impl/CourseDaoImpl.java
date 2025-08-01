@@ -46,7 +46,7 @@ public class CourseDaoImpl implements CourseDao {
                 return course;
             }
         }
-        throw new IllegalArgumentException("No course found with id: " + id);
+        return null;
     }
 
     @Override
@@ -67,11 +67,6 @@ public class CourseDaoImpl implements CourseDao {
                 result.add(course);
             }
         }
-        // Decided that it is okay to return an empty list.
-        /* if (result.isEmpty()) {
-            throw new IllegalArgumentException("No course found with the following course name: " + name);
-        }*/
-
         return result;
     }
 
@@ -91,12 +86,6 @@ public class CourseDaoImpl implements CourseDao {
                 result.add(course);
             }
         }
-
-        // Decided that it is okay to return an empty list.
-        /* if (result.isEmpty()) {
-            throw new IllegalArgumentException("No courses found with the following date: " + date);
-        }*/
-
         return result;
     }
 
