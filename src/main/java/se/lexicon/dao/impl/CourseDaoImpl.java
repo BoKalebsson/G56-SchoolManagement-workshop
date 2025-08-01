@@ -63,7 +63,7 @@ public class CourseDaoImpl implements CourseDao {
 
         // Search for matching courses (case-insensitive):
         for (Course course : courses) {
-            if (course.getCourseName().equalsIgnoreCase(searchName)) {
+            if (course.getCourseName().toLowerCase().contains(searchName)) {
                 result.add(course);
             }
         }
