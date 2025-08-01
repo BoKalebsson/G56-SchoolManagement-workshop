@@ -59,7 +59,7 @@ public class CourseDaoImpl implements CourseDao {
 
         // Create a list to hold matching courses, and trim the name to search for:
         List<Course> result = new ArrayList<>();
-        String searchName = name.trim();
+        String searchName = name.toLowerCase().trim();
 
         // Search for matching courses (case-insensitive):
         for (Course course : courses) {

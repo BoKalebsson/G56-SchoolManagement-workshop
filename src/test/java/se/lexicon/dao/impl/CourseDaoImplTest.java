@@ -76,10 +76,12 @@ public class CourseDaoImplTest {
     }
 
     @Test
-    void findById_notFound_throws() {
-        // Act & Assert: id not found throws exception
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dao.findById(999));
-        assertTrue(ex.getMessage().contains("No course found"));
+    void findById_notFound_returnsNull() {
+        // Act: attempt to find non-existing course
+        Course result = dao.findById(999);
+
+        // Assert: result should be null
+        assertNull(result);
     }
 
     // Group: findByName()
